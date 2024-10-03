@@ -1,0 +1,35 @@
+.pattern {
+  background: url(../../../../../public/profile-pattern.svg)
+    hsla(225, 100%, 94%, 1);
+  background-repeat: repeat-x;
+  background-position: 60% 100%;
+  width: auto;
+}
+
+.details {
+  p {
+    margin-top: 1rem;
+  }
+}
+
+img {
+  border: 5px solid white;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: min-content auto;
+  align-items: center;
+  padding: 20px;
+}
+
+.info-row p {
+  margin: 0;
+  text-align: left;
+  // padding-right: 20px;
+  min-width: 200px;
+}
+
+.info-row span {
+  margin: 0;
+}

@@ -1,0 +1,122 @@
+.main-container{
+  display:flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+mat-card{
+    max-width: 345px;
+    flex: 1 1 calc(25% - 20px);
+    margin: 10px;
+}
+.main-card-container {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+  .leave-info-card {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    .leave-info-header {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      border-bottom: 1px solid #ddd;
+
+      .first-row {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .second-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+    }
+    .leave-info-body {
+      padding: 20px 0 20px 20px;
+
+      .leave-personal-details{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+
+        .profile{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .profile-name{
+                color: #333;
+            }
+            .employee-id{
+                color:#999;
+                font-size: 12px;
+            }
+        }
+        
+      }
+    }
+    .leave-info-button{
+        border-top: 1px solid #ddd;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        padding-top: 20px;
+    }
+  }
+}
+
+.reason {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.options {
+    font-size: 18px;
+    color: #666;
+    cursor: pointer;
+}
+
+.fromDate,
+.toDate {
+    font-size: 16px;
+    color: #666;
+}
+
+.clr-333{
+    color: #333;
+    font-weight: bold;
+}
+.clr-666{
+    color: #666;
+    font-size: 12px;;
+}
+.clr-999{
+    color:#999;
+    font-size: 12px;
+}
+
+@media(max-widh: 1200px){
+  mat-card{
+    flex: 1 1 calc(50% - 20px);
+  }
+}
+@media(max-width: 768px){
+  mat-card{
+    flex: 1 1 100%;
+  }
+}

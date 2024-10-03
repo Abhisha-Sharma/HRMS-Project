@@ -1,0 +1,32 @@
+<p class="bg-blue-400 text-white p-5 text-xl font-bold !m-0">
+  {{ !!imageName ? "Update " : "Upload" }}Profile Picture
+</p>
+<div class="p-6 rounded-md shadow-lg border border-t-4 border-blue-400">
+  <form [formGroup]="uploadPictureForm" (ngSubmit)="onSubmit()">
+    <div class="h-28">
+      <label for="file">Choose an image:</label>
+      <input
+        type="file"
+        formControlName="imageUpload"
+        id="file"
+        (change)="onFileSelect($event)"
+      />
+    </div>
+    <p
+      *ngIf="
+        (uploadPictureForm.get('imageUpload')?.touched ||
+          uploadPictureForm.get('imageUpload')?.dirty) &&
+        uploadPictureForm.get('imageUpload')?.hasError('required')
+      "
+      class="text-red-500 text-sm pt-4"
+    >
+      Picture is missing!
+    </p>
+    <button
+      type="submit"
+      class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+    >
+      Upload
+    </button>
+  </form>
+</div>

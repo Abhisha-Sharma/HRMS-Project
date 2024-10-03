@@ -1,0 +1,90 @@
+<div>
+  <div class="second-row grid lg:grid-cols-2 xl:grid-cols-4 gap-4 mb-5">
+    <!-- <div *ngIf="attendanceSummary$ | async as attendanceSummary"> -->
+    <div class="leave-details">
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <div class="detail-header">
+            <div class="header-number green-background">
+              <mat-card-title
+                >{{
+                  (attendanceSummary$ | async)?.totalEmployeePresentToday ?? 0
+                }}
+                <br />
+                <span class="size-600 padl5">STAFFS</span>
+              </mat-card-title>
+            </div>
+            <div class="header-title">
+              <mat-card-title>Total Checked In</mat-card-title>
+            </div>
+          </div>
+        </mat-card-header>
+      </mat-card>
+    </div>
+
+    <div class="leave-details">
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <div class="detail-header">
+            <div class="header-number green-background">
+              <mat-card-title
+                >{{
+                  (attendanceSummary$ | async)?.totalEmployeeWorkingFromHome ??
+                    0
+                }}
+                <br />
+                <span class="size-600 padl5">STAFFS</span>
+              </mat-card-title>
+            </div>
+            <div class="header-title">
+              <mat-card-title>Office Checked In</mat-card-title>
+            </div>
+          </div>
+        </mat-card-header>
+      </mat-card>
+    </div>
+
+    <div class="leave-details">
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <div class="detail-header">
+            <div class="header-number green-background">
+              <mat-card-title
+                >{{
+                  (attendanceSummary$ | async)
+                    ?.totalEmployeeWorkingFromOffice ?? 0
+                }}
+                <br />
+                <span class="size-600 padl5">STAFFS</span>
+              </mat-card-title>
+            </div>
+            <div class="header-title">
+              <mat-card-title>Working From Home</mat-card-title>
+            </div>
+          </div>
+        </mat-card-header>
+      </mat-card>
+    </div>
+
+    <div class="leave-details">
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <mat-card-title-group>
+            <div class="detail-header">
+              <div class="header-number red-background">
+                <mat-card-title
+                  >{{ totalEmployeeOnLeaveTodayCount }}<br />
+                  <span class="size-600 padl5">STAFFS</span>
+                </mat-card-title>
+              </div>
+              <div class="header-title">
+                <mat-card-title>On Leave Today</mat-card-title>
+              </div>
+            </div>
+          </mat-card-title-group>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<!-- </div> -->

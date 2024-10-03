@@ -1,0 +1,98 @@
+<div class="main-container">
+
+  <div class="first-row">
+    <h6>Leave Requests</h6>
+    <!-- <div class="button-container">
+      <button mat-button color="primary">
+                <mat-icon>add</mat-icon>
+                Leave Request
+            </button>
+    </div> -->
+  </div>
+
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <div class="mat-table-wrapper">
+
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let row; let i=index"> {{i+1}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="employeeName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.employeeName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="phoneNumber">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone No. </th>
+          <td mat-cell *matCellDef="let row"> {{row.phoneNumber}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="leaveFrom">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Leave From </th>
+          <td mat-cell *matCellDef="let row"> {{row.leaveFrom}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="leaveTo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Leave To </th>
+          <td mat-cell *matCellDef="let row"> {{row.leaveTo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="reasonForLeave">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Reason </th>
+          <td mat-cell *matCellDef="let row"> {{row.reasonForLeave}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="leaveType">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Leave Type </th>
+          <td mat-cell *matCellDef="let row"> {{row.leaveType}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="totalLeaveDuration">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Duration </th>
+          <td mat-cell *matCellDef="let row"> {{row.totalLeaveDuration}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="leaveRequestStatus">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="action">
+              <span [ngClass]="{
+                'spacing':true,
+                'red': element.leaveRequestStatus === 'Reject',
+                'green': element.leaveRequestStatus === 'Accept',
+                'yellow': element.leaveRequestStatus === 'Pending'
+            }">
+                {{ element.leaveRequestStatus === 'Accept'?'Accepted': element.leaveRequestStatus ===
+                'Reject'?'Rejected': 'Pending'}}
+                @if(element.leaveRequestStatus === "Pending"){
+                <span class="spacing">
+                  <button>
+                    <mat-icon mat-button title="preview" (click)="onView(element.id)">preview</mat-icon>
+                  </button>
+                </span>
+                }
+              </span>
+            </div>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="7">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    </div>
+
+  </div>
+</div>

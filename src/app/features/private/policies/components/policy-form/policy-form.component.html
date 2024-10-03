@@ -1,0 +1,22 @@
+<div class="body-component">
+<form (ngSubmit)="savePolicy()" #policyForm="ngForm">
+  <mat-form-field appearance="outline">
+    <mat-label>Title</mat-label>
+    <input matInput [(ngModel)]="policy.title" name="title" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Category</mat-label>
+    <input matInput [(ngModel)]="policy.category" name="category">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Content</mat-label>
+    <textarea matInput [(ngModel)]="policy.content" name="content" rows="4"></textarea>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Save</button>
+</form>
+</div>
+
+

@@ -1,0 +1,27 @@
+<div class="main-container">
+  <div class="first-row">
+    <h6>Policies</h6>
+    <div class="button-container">
+      <button mat-button color="primary" (click)="routeToPolicyForm()">
+        <mat-icon>add</mat-icon>
+        Add Policy
+      </button>
+    </div>
+  </div>
+
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let policy of policies$ | async">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{policy.title}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{policy.category}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>{{policy.content}}</p>
+      <button mat-button (click)="editPolicy(policy.id)">Edit</button>
+      <button mat-button (click)="deletePolicy(policy.id)">Delete</button>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

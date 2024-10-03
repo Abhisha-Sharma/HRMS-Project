@@ -1,0 +1,15 @@
+p {
+  margin: 0;
+}
+
+.mat-d {
+  margin: 5px 16px 0 16px;
+}
+.custom-scrollbar {
+  min-height: 20rem;
+  height: 20rem;
+  max-height: 20rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}

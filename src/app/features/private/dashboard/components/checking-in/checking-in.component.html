@@ -1,0 +1,17 @@
+<div class="main-container flex w-full justify-between items-center mb-4">
+  <div class="desc">
+    <p class="hidden sm:block text-lg">
+      Welcome {{ (profileDetails$ | async)?.firstName ?? "to TechnoFex" }}!
+    </p>
+  </div>
+  <div class="flex flex-1 sm:flex-none">
+    <button
+      class="flex-1"
+      mat-flat-button
+      [color]="!isCheckedIn ? 'primary' : 'warn'"
+      (click)="openCheckInDialog()"
+    >
+      {{ !isCheckedIn ? "Check-In" : "Check-Out" }}
+    </button>
+  </div>
+</div>

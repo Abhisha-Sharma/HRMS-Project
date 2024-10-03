@@ -1,0 +1,115 @@
+<mat-drawer-container class="sidebar-container">
+  <mat-drawer mode="side" opened class="sidebar">
+    <nav>
+      <ul>
+        <li
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a [routerLink]="route_constant.dashboard">
+            <span [ngClass]="{ 'sidebar-row': true }">
+              <mat-icon>dashboard</mat-icon>
+              Dashboard
+            </span>
+          </a>
+        </li>
+        
+        <li [routerLinkActive]="['active']">
+          <a [routerLink]="[route_constant.profileDetails, id]">
+            <span class="sidebar-row">
+              <mat-icon>person</mat-icon>
+              Profile
+            </span>
+          </a>   
+        </li>
+
+        @if(role === "Admin") {
+          <li
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >
+          <a [routerLink]="route_constant.staffManagement">
+            <span class="sidebar-row">
+              <mat-icon>folder_shared</mat-icon>
+              Staff Management
+            </span>
+          </a>
+        </li>
+      }
+
+
+        @if(role === "Employee"){
+
+          <li [routerLinkActive]="['active']">
+            <a [routerLink]="route_constant.leaveManagement">
+              <span class="sidebar-row">
+                <mat-icon>settings_applications</mat-icon>
+                Leave Management
+              </span>
+            </a>   
+          </li>
+        }
+        
+        @if(role === "Employee"){
+
+          <li [routerLinkActive]="['active']">
+            <a [routerLink]="route_constant.leaveApply">
+              <span class="sidebar-row">
+                <mat-icon>settings_applications</mat-icon>
+                Apply Leave
+              </span>
+            </a>   
+          </li>
+        }
+
+
+        
+        <!-- <li [routerLinkActive]="['active']">
+          <a [routerLink]="route_constant.employeeLeaveManagement">
+            <span class="sidebar-row">
+              <mat-icon>fact_check</mat-icon>
+              Leave Details
+            </span>
+          </a>
+        </li> -->
+
+        @if(role === "Admin"){
+          <li
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >
+          <a [routerLink]="route_constant.applicationStatus">
+            <span class="sidebar-row">
+              <mat-icon>info</mat-icon>
+              Leave Requests
+            </span>
+          </a>
+        </li>
+      }
+        
+      @if(role === "Admin"){
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a [routerLink]="route_constant.attendance">
+            <span class="sidebar-row">
+              <mat-icon>list_alt</mat-icon>
+              Attendance Details
+            </span>
+          </a>
+        </li>
+      }
+
+        <li
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a [routerLink]="route_constant.policies">
+            <span class="sidebar-row">
+              <mat-icon>policy</mat-icon>
+              Policies
+            </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </mat-drawer>
+</mat-drawer-container>

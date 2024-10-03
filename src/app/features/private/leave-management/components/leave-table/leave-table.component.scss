@@ -1,0 +1,113 @@
+.spacing {
+  display: inline-flex;
+  gap: 20px;
+}
+
+.main-container {
+  padding: 16px;
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+    word-break: break-word;
+
+    th,
+    td {
+      text-align: left;
+      padding: 8px 16px;
+      white-space: nowrap;
+    }
+  }
+
+  .spacing {
+    display: inline-flex;
+    gap: 20px;
+  }
+
+  @media (max-width: 480px) {
+    .spacing {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    table {
+      font-size: 12px;
+    }
+  }
+
+  @media (min-width: 481px) and (max-width: 780px) {
+    .spacing {
+      gap: 15px;
+    }
+
+    table {
+      font-size: 14px;
+    }
+  }
+
+  @media (min-width: 781px) and (max-width: 900px) {
+    .spacing {
+      gap: 18px;
+    }
+
+    table {
+      font-size: 15px;
+    }
+  }
+
+  @media (min-width: 901px) and (max-width: 1200px) {
+    .spacing {
+      gap: 20px;
+    }
+
+    table {
+      font-size: 16px;
+    }
+  }
+  @media (min-width: 1201px) {
+    .spacing {
+      gap: 25px;
+    }
+
+    table {
+      font-size: 18px;
+    }
+  }
+  @media (min-width: 1500px) {
+    .spacing {
+      gap: 30px;
+    }
+
+    table {
+      font-size: 20px;
+    }
+  }
+}
+.red {
+  color: red;
+  background-color: rgb(255, 196, 196);
+  border-radius: 10px;
+  padding: 10px;
+  padding-left: 30px;
+}
+.green {
+  color: green;
+  background-color: rgb(157, 252, 157);
+  padding: 10px;
+  padding-left: 30px;
+  border-radius: 10px;
+}
+.blue {
+  display: flex;
+  color: #0d47a1;
+}
+.yellow{
+    display: flex;
+    color: orange;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(247, 247, 180);
+    padding: 10px;
+    padding-left: 30px;
+    border-radius: 10px;
+}

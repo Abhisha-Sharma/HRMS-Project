@@ -1,0 +1,118 @@
+<p
+  class="{{
+    isCheckedIn ? 'bg-red-400' : 'bg-blue-400'
+  }} text-white p-5 text-xl font-bold !m-0"
+>
+  {{ isCheckedIn ? "You are about to CHECK-OUT!" : "CHECK-IN!" }}
+</p>
+@if(isLoading){
+<mat-progress-bar mode="query"></mat-progress-bar>
+}
+<div class="p-6 rounded-md shadow-lg border border-t-4 border-blue-400">
+  @if(!isCheckedIn){
+  <form [formGroup]="checkInForm" (ngSubmit)="onCheckInSubmit()">
+    <div class="h-28">
+      <label class="block font-medium"
+        >Select Your Work Location for Today</label
+      >
+      <mat-radio-group
+        formControlName="workLocation"
+        class="flex justify-around items-center my-3"
+      >
+        <label
+          class="flex items-center font-medium peer-checked/draft:text-sky-500"
+        >
+          <mat-radio-button value="1" class="mr-2 peer/draft" />
+          Work From Office
+        </label>
+        <label class="flex items-center font-medium">
+          <mat-radio-button value="2" class="mr-2" />
+          Work From Home
+        </label>
+      </mat-radio-group>
+      <p
+        *ngIf="
+          (checkInForm.get('workLocation')?.touched ||
+            checkInForm.get('workLocation')?.dirty) &&
+          checkInForm.get('workLocation')?.hasError('required')
+        "
+        class="text-red-500 text-sm mt-1"
+      >
+        Work Location is required!
+      </p>
+    </div>
+    <div class="mb-2 h-24">
+      <label class="block mb-2 font-medium">Remarks</label>
+      <input
+        type="text"
+        formControlName="checkInReason"
+        placeholder="Remarks"
+        class="w-full px-3 py-2 border border-gray-300 rounded-md"
+      />
+      <p
+        *ngIf="
+          (checkInForm.get('checkInReason')?.touched ||
+            checkInForm.get('checkInReason')?.dirty) &&
+          checkInForm.get('checkInReason')?.hasError('required')
+        "
+        class="text-red-500 text-sm pt-4"
+      >
+        Remarks is required!
+      </p>
+    </div>
+    <div class="flex justify-end space-x-4">
+      <button
+        type="button"
+        (click)="onCancel()"
+        class="px-4 py-2 border border-gray-300 rounded-md hover:bg-red-100"
+      >
+        Cancel
+      </button>
+      <button
+        [disabled]="isLoading"
+        type="submit"
+        class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+      >
+        Check-In
+      </button>
+    </div>
+  </form>
+  }@else{
+  <form [formGroup]="checkOutForm" (ngSubmit)="onCheckOutSubmit()">
+    <div class="mb-2 h-24">
+      <label class="block mb-2 font-medium">Remarks</label>
+      <input
+        type="text"
+        formControlName="checkOutReason"
+        placeholder="Remarks"
+        class="w-full px-3 py-2 border border-gray-300 rounded-md"
+      />
+      <p
+        *ngIf="
+          (checkOutForm.get('checkOutReason')?.touched ||
+            checkOutForm.get('checkOutReason')?.dirty) &&
+          checkOutForm.get('checkOutReason')?.hasError('required')
+        "
+        class="text-red-500 text-sm pt-4"
+      >
+        Remarks is required!
+      </p>
+    </div>
+    <div class="flex justify-end space-x-4">
+      <button
+        type="button"
+        (click)="onCancel()"
+        class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100"
+      >
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+      >
+        Check-Out
+      </button>
+    </div>
+  </form>
+  }
+</div>

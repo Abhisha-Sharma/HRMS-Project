@@ -1,0 +1,444 @@
+<div class="form-header">
+  <div class="form-title" *ngIf="!isEditMode">
+    <h4>Registration Form</h4>
+  </div>
+  <div class="form-title" *ngIf="isEditMode">
+    <h4>Edit Registration Form</h4>
+  </div>
+</div>
+<div class="z-50" *ngIf="loading$ | async">
+  <mat-progress-bar mode="query"></mat-progress-bar>
+</div>
+<div class="form-container">
+  <form
+    [formGroup]="registrationForm"
+    (ngSubmit)="onSubmit()"
+    class="my-grid p-5"
+  >
+    <div>
+      <mat-form-field appearance="outline" class="my-input">
+        <mat-label>First Name</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="firstName"
+          placeholder="Enter First Name"
+        />
+        <mat-error
+          *ngIf="
+            (registrationForm.get('firstName')?.touched ||
+              registrationForm.get('firstName')?.dirty) &&
+            registrationForm.get('firstName')?.hasError('required')
+          "
+        >
+          First Name is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="my-input">
+        <mat-label>Middle Name</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="middleName"
+          placeholder="Enter Mid Name"
+        />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="my-input">
+        <mat-label>Last Name</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="lastName"
+          placeholder="Enter Last Name"
+        />
+        <mat-error
+          *ngIf="
+            (registrationForm.get('lastName')?.touched ||
+              registrationForm.get('lastName')?.dirty) &&
+            registrationForm.get('lastName')?.hasError('required')
+          "
+        >
+          Last Name is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline" class="my-input">
+        <mat-label> Phone Number</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="mobileNo"
+          placeholder="Enter phoneNumber"
+        />
+        <mat-error
+          *ngIf="
+            (registrationForm.get('mobileNo')?.touched ||
+              registrationForm.get('mobileNo')?.dirty) &&
+            registrationForm.get('mobileNo')?.hasError('required')
+          "
+        >
+          Enter valid phoneNumber
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="my-input">
+        <mat-label>Gender</mat-label>
+        <mat-select placeholder="Gender" formControlName="gender" name="gender">
+          <mat-option value="1">Male</mat-option>
+          <mat-option value="2">Female</mat-option>
+          <mat-option value="3">Others</mat-option>
+        </mat-select>
+
+        <mat-error
+          *ngIf="
+            (registrationForm.get('gender')?.touched ||
+              registrationForm.get('gender')?.dirty) &&
+            registrationForm.get('gender')?.hasError('required')
+          "
+        >
+          Gender is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field
+        class="example-full-width"
+        appearance="outline"
+        class="my-input"
+      >
+        <mat-label>Enter DOB</mat-label>
+        <input
+          matInput
+          formControlName="dob"
+          placeholder="MM/DD/YYYY
+          "
+          [matDatepicker]="picker"
+          [max]="maxDate"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error
+          *ngIf="
+            (registrationForm.get('dob')?.touched ||
+              registrationForm.get('dob')?.dirty) &&
+            registrationForm.get('dob')?.hasError('required')
+          "
+        >
+          Date of Birth is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="my-input">
+        <mat-label>Enter Address</mat-label>
+        <input matInput formControlName="address" placeholder="Address*" />
+        <mat-error
+          *ngIf="
+            (registrationForm.get('address')?.touched ||
+              registrationForm.get('address')?.dirty) &&
+            registrationForm.get('address')?.hasError('required')
+          "
+        >
+          Address is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline" class="my-input">
+        <mat-label>Country</mat-label>
+        <mat-select
+          placeholder="Country"
+          formControlName="country"
+          (selectionChange)="getCityListByCountryId($event.value)"
+          name="country"
+        >
+          <mat-option
+            *ngFor="let country of countries$ | async"
+            [value]="country"
+          >
+            {{ country.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            (registrationForm.get('country')?.touched ||
+              registrationForm.get('country')?.dirty) &&
+            registrationForm.get('country')?.hasError('required')
+          "
+        >
+          Country is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline" class="my-input">
+        <mat-label>City</mat-label>
+        <mat-select formControlName="city" name="city">
+          <mat-option *ngFor="let city of cities$ | async" [value]="city">
+            {{ city.name }}</mat-option
+          >
+        </mat-select>
+        <mat-error
+          *ngIf="
+            (registrationForm.get('city')?.touched ||
+              registrationForm.get('city')?.dirty) &&
+            registrationForm.get('city')?.hasError('required')
+          "
+        >
+          City is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="my-input">
+        <mat-label>Enter Nationality</mat-label>
+        <input
+          matInput
+          formControlName="nationality"
+          placeholder="Nationality"
+        />
+        <mat-error
+          *ngIf="
+            (registrationForm.get('nationality')?.touched ||
+              registrationForm.get('nationality')?.dirty) &&
+            registrationForm.get('nationality')?.hasError('required')
+          "
+        >
+          Nationality is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="my-input">
+        <mat-label>Enter Citizenship Number</mat-label>
+        <input
+          matInput
+          formControlName="citizenshipNo"
+          placeholder="Citizenship Number"
+        />
+        <mat-error
+          *ngIf="
+            (registrationForm.get('citizenshipNo')?.touched ||
+              registrationForm.get('citizenshipNo')?.dirty) &&
+            registrationForm.get('citizenshipNo')?.hasError('required')
+          "
+        >
+          Citizenship Number is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field
+        class="example-full-width"
+        appearance="outline"
+        class="my-input"
+      >
+        <mat-label>Enter start date</mat-label>
+        <input
+          matInput
+          placeholder="MM/DD/YYYY
+          "
+          formControlName="startDate"
+          [matDatepicker]="picker1"
+          [max]="maxStartDate"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker1"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+        <mat-error
+          *ngIf="
+            (registrationForm.get('startDate')?.touched ||
+              registrationForm.get('startDate')?.dirty) &&
+            registrationForm.get('startDate')?.hasError('required')
+          "
+        >
+          Start Date is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="my-input">
+        <mat-label>Department</mat-label>
+        <mat-select
+          formControlName="departmentId"
+          name="departmentId"
+          placeholder="Department"
+        >
+          <mat-option
+            *ngFor="let department of departments$ | async"
+            [value]="department"
+          >
+            {{ department.name }}
+          </mat-option>
+        </mat-select>
+
+        <mat-error
+          *ngIf="
+            (registrationForm.get('departmentId')?.touched ||
+              registrationForm.get('departmentId')?.dirty) &&
+            registrationForm.get('departmentId')?.hasError('required')
+          "
+        >
+          Department is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="my-input">
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="role" name="role" placeholder="Role">
+          <mat-option *ngFor="let role of roles$ | async" [value]="role">
+            {{ role.value }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            (registrationForm.get('role')?.touched ||
+              registrationForm.get('role')?.dirty) &&
+            registrationForm.get('role')?.hasError('required')
+          "
+        >
+          Role is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" class="my-input">
+        <mat-label>Enter your email</mat-label>
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          placeholder="pat@example.com"
+        />
+
+        <mat-error
+          *ngIf="
+            registrationForm.get('email')?.touched ||
+            registrationForm.get('email')?.dirty ||
+            registrationForm.get('email')?.hasError('email')
+          "
+        >
+          Please enter a valid email.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="!isEditMode">
+      <mat-form-field appearance="outline" class="my-input">
+        <mat-label>Enter your password</mat-label>
+        <input
+          matInput
+          placeholder="Password"
+          formControlName="password"
+          [type]="passwordHide ? 'password' : 'text'"
+        />
+        <button
+          type="button"
+          mat-icon-button
+          matSuffix
+          (click)="passwordHide = !passwordHide"
+          [attr.aria-label]="'passwordHide'"
+          [attr.aria-pressed]="passwordHide"
+        >
+          <mat-icon>{{
+            passwordHide ? "visibility_off" : "visibility"
+          }}</mat-icon>
+        </button>
+        <mat-error
+          *ngIf="
+            (registrationForm.get('password')?.touched ||
+              registrationForm.get('password')?.dirty) &&
+            registrationForm.get('password')?.hasError('required')
+          "
+        >
+          Password is required.
+        </mat-error>
+        <mat-error
+          *ngIf="
+            (registrationForm.get('password')?.touched ||
+              registrationForm.get('password')?.dirty) &&
+            registrationForm.get('password')?.hasError('minlength')
+          "
+        >
+          Password must be at least 6 characters long.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div *ngIf="!isEditMode">
+      <mat-form-field appearance="outline" class="my-input">
+        <mat-label>Confirm your password</mat-label>
+        <input
+          matInput
+          placeholder="Confirm Password"
+          formControlName="confirmPassword"
+          [type]="confirmPasswordHide ? 'password' : 'text'"
+        />
+        <button
+          type="button"
+          mat-icon-button
+          matSuffix
+          (click)="confirmPasswordHide = !confirmPasswordHide"
+          [attr.aria-label]="'confirmPasswordHide'"
+          [attr.aria-pressed]="confirmPasswordHide"
+        >
+          <mat-icon>{{
+            confirmPasswordHide ? "visibility_off" : "visibility"
+          }}</mat-icon>
+        </button>
+        <mat-error
+          *ngIf="
+            (registrationForm.get('confirmPassword')?.touched ||
+              registrationForm.get('confirmPassword')?.dirty) &&
+            registrationForm.get('confirmPassword')?.hasError('required')
+          "
+        >
+          Confirm Password is required.
+        </mat-error>
+        <mat-error
+          *ngIf="
+            (registrationForm.get('confirmPassword')?.touched ||
+              registrationForm.get('confirmPassword')?.dirty) &&
+            registrationForm
+              .get('confirmPassword')
+              ?.hasError('passwordMismatch')
+          "
+        >
+          Passwords do not match.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="buttons">
+      <div class="example-button-row">
+        <button mat-flat-button>Submit</button>
+      </div>
+      <div *ngIf="isEditMode" class="example-button-row">
+        <button mat-flat-button (click)="onCancelEdit()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

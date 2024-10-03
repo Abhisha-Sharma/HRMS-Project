@@ -1,0 +1,79 @@
+<div class="main-container">
+
+    <div class="first-row">
+        <h6>Apply Leave</h6>
+        <!-- <div class="button-container">
+            <button mat-button color="primary" (click)="routeToLeaveApply()">
+                <mat-icon>add</mat-icon>
+                Leave Request
+            </button>
+        </div> -->
+    </div>
+
+    <div class="second-row">
+
+        @if (leaveApplyForm) {
+        <div class="leaveApplyForm">
+            <form [formGroup]="leaveApplyForm" (ngSubmit)="onSubmit()">
+
+                <!-- <mat-form-field appearance="outline">
+                        <mat-label>Department</mat-label>
+            <mat-select formControlName="department">
+                <mat-option *ngFor="let department of departments" [value]="department">
+                    {{department}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field> -->
+
+                <div class="form-row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Day Leave Type</mat-label>
+                        <mat-select formControlName="dayLeave">
+                            <mat-option *ngFor="let leave of dayLeaveTypeArray" [value]="leave">
+                                {{leave.value}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Leave Type</mat-label>
+                        <mat-select formControlName="leaveType">
+                            <mat-option *ngFor="let leaveType of leaveTypeArray" [value]="leaveType">
+                                {{leaveType.value}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Leave Date From</mat-label>
+                        <input matInput [matDatepicker]="picker1" formControlName="leaveFrom" [min]="minDate" />
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Leave Date To</mat-label>
+                        <input matInput [matDatepicker]="picker2" formControlName="leaveTo" [min]="minDateForLeaveTo" />
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+
+                </div>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Reason For Leave</mat-label>
+                    <textarea matInput formControlName="reasonForLeave" placeholder="Enter your reason for leave"
+                        maxlength="200" rows="4">
+        </textarea>
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" type="submit" [disabled]="!leaveApplyForm.valid">
+                    {{ isEditMode? 'Update': 'Submit'}}
+                </button>
+            </form>
+        </div>
+        }
+    </div>
+</div>

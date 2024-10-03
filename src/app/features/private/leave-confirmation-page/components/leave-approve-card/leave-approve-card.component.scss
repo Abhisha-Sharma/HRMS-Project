@@ -1,0 +1,180 @@
+.main-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+mat-card {
+  max-width: 420px;
+  min-width: 380px;
+  flex: 1 1 calc(25% - 20px);
+}
+.main-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+  .leave-info-card {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding-right: 20px;
+
+    .leave-info-header {
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      border-bottom: 1px solid #ddd;
+
+      .first-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .second-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-left: 80px;
+        .options{
+          display: flex;
+          margin-left:auto;
+        }
+      }
+    }
+    .leave-info-body {
+      padding: 20px 0 20px 20px;
+
+      .leave-personal-details {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+
+        .profile {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          .profile-name {
+            color: #333;
+          }
+        }
+      }
+    }
+    .leave-info-button {
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      padding-top: 20px;
+    }
+  }
+}
+
+.reason {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.options {
+  font-size: 18px;
+  color: #666;
+  cursor: pointer;
+}
+
+.fromDate,
+.toDate {
+  font-size: 10px;
+  color: #666;
+}
+
+.clr-333 {
+  color: #333;
+  font-weight: bold;
+}
+.clr-666 {
+  color: #666;
+  font-size: 12px;
+}
+.clr-999 {
+  color: #999;
+  font-size: 12px;
+}
+
+@media (max-widh: 1200px) {
+  mat-card {
+    flex: 1 1 calc(50% - 20px);
+  }
+}
+@media (max-width: 768px) {
+  mat-card {
+    flex: 1 1 100%;
+  }
+}
+.days-text,
+.duration {
+  text-align: center;
+}
+.duration {
+  width: fit-content;
+  padding-right: 16px;
+}
+.personal-details {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
+.img {
+  width: 48px;
+  height: 48px;
+  margin-right: 12px;
+  img {
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+  }
+}
+.employee-details {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.leave-type {
+  margin-left: auto;
+  text-align: end;
+  font-size: 10px;
+}
+mat-stroked-button {
+  .mat-button-toggle-focus-overlay {
+    display: none;
+  }
+  .mat-mdc-button {
+    --mat-mdc-button-persistent-ripple-color: none;
+  }
+}
+.font-24{
+  font-size: 20px;
+}
+.close-button{
+  top:0;
+  right:0;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  mat-icon{
+    font-size: 20px;
+    cursor: pointer;
+  }
+}

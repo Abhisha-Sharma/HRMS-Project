@@ -1,0 +1,145 @@
+<div class="z-50" *ngIf="loading$ | async">
+  <mat-progress-bar mode="query"></mat-progress-bar>
+</div>
+<div class="grid grid-col-1 p-5 mt-2 gap-6">
+  <div class="p-10 flex justify-between pattern">
+    <div class="flex flex-col md:flex-row items-center gap-14">
+      <img
+        *ngIf="profilePicture$ | async as profilePicture"
+        class="w-40 h-40 rounded-full"
+        mat-card-image
+        [src]="
+          profilePicture.imageDataBase64
+            ? 'data:image/jpeg;base64,' + profilePicture.imageDataBase64
+            : 'avatar.png'
+        "
+        alt="Profile Picture"
+      />
+      <div
+        *ngIf="profileDetails$ | async as profileDetails"
+        class="flex flex-col"
+      >
+        <p class="text-2xl">
+          {{ profileDetails.firstName }} {{ profileDetails.middleName }}
+          {{ profileDetails.lastName }}
+        </p>
+        <p>Joined Date : {{ profileDetails.startDate | date }}</p>
+      </div>
+    </div>
+    <div>
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu class="bg-blue-100 custom-menu" #menu="matMenu">
+        <button
+          mat-menu-item
+          (click)="onEditProfileDetails(paramProfileId ?? 0)"
+        >
+          <mat-icon>account_circle</mat-icon>
+          <span>Edit Profile</span>
+        </button>
+        <button mat-menu-item (click)="onChangePicture()">
+          <mat-icon>camera_alt</mat-icon>
+          <span>{{ !!imageName ? "Update " : "Upload " }}Profile Picture</span>
+        </button>
+        <!-- <button mat-menu-item (click)="onChangePassword()">
+          <mat-icon>edit</mat-icon>
+          <span>Change Password</span>
+        </button> -->
+      </mat-menu>
+    </div>
+  </div>
+  <div *ngIf="profileDetails$ | async as profileDetails">
+    <div class="info-row">
+      <p>First Name:</p>
+      <span>{{ profileDetails.firstName }}</span>
+    </div>
+    <mat-divider></mat-divider>
+
+    @if(profileDetails.middleName){
+    <div class="info-row">
+      <p>Middle Name:</p>
+      <span>{{ profileDetails.middleName }}</span>
+    </div>
+    <mat-divider></mat-divider>
+    }
+
+    <div class="info-row">
+      <p>Last Name:</p>
+      <span>{{ profileDetails.lastName }}</span>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="info-row">
+      <p>Role:</p>
+      <span>{{ profileDetails.role }}</span>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="info-row">
+      <p>Department:</p>
+      <span>{{
+        profileDetails.departmentId === 1
+          ? "Software"
+          : profileDetails.departmentId === 2
+          ? "IT"
+          : profileDetails.departmentId === 3
+          ? "QA"
+          : profileDetails.departmentId === 4
+          ? "Flutter"
+          : "N/A"
+      }}</span>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="info-row">
+      <p>Gender:</p>
+      <span>{{
+        profileDetails.gender === 1
+          ? "Male"
+          : profileDetails.gender === 2
+          ? "Female"
+          : "Other"
+      }}</span>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="info-row">
+      <p>Contact Number:</p>
+      <span>{{ profileDetails.mobileNo }}</span>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="info-row">
+      <p>Email:</p>
+      <span>{{ profileDetails.email }}</span>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="info-row">
+      <p>Address:</p>
+      <span>{{ profileDetails.addressId }}</span>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="info-row">
+      <p>Nationality:</p>
+      <span>{{ profileDetails.nationality }}</span>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="info-row">
+      <p>Date of Birth:</p>
+      <span>{{ profileDetails.dob | date }}</span>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="info-row">
+      <p>Citizenship No.:</p>
+      <span>{{ profileDetails.citizenshipNo }}</span>
+    </div>
+  </div>
+</div>

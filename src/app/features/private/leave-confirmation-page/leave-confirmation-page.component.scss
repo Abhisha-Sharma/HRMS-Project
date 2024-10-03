@@ -1,0 +1,129 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  height: 100%;
+  background-color: #eef2f5;
+  
+  .first-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+}
+.action{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.spacing{
+    margin:10px;
+    text-align: center;
+}
+.mat-table-wrapper {
+  width: 100%;
+  overflow-x: auto;  
+  display: block;   
+}
+
+@media (max-width: 480px) {
+  .mat-table-wrapper {
+    table {
+      display: block;
+      width: 100%;
+
+      th, td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      td {
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+        white-space: normal;
+
+        &:before {
+          content: attr(data-label);
+          position: absolute;
+          left: 0;
+          width: 50%;
+          padding: 8px;
+          font-weight: bold;
+          background: #f9f9f9;
+          border-right: 1px solid #ddd;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .mat-table-wrapper {
+    table {
+      th, td {
+        padding: 12px;
+      }
+    }
+  }
+}
+
+@media (min-width: 769px) and (max-width: 900px) {
+  .mat-table-wrapper {
+    table {
+      th, td {
+        padding: 14px;
+      }
+    }
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1200px) {
+  .mat-table-wrapper {
+    table {
+      th, td {
+        padding: 16px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1201px) {
+  .mat-table-wrapper {
+    table {
+      th, td {
+        padding: 18px;
+      }
+    }
+  }
+}
+.red {
+  color: red;
+  background-color: rgb(255, 196, 196);
+  padding: 15px;
+  border-radius: 10px;
+}
+.green {
+  color: green;
+  background-color: rgb(157, 252, 157);
+  padding: 15px;
+  border-radius: 10px;
+}
+.blue {
+  display: flex;
+  color: #0d47a1;
+}
+.yellow{
+    display: flex;
+    color: orange;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(247, 247, 180);
+    padding: 0 15px 0 15px;
+    padding-left: 30px;
+    border-radius: 10px;
+}

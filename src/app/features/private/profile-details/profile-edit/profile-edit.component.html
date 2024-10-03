@@ -1,0 +1,160 @@
+<mat-dialog-content class="p-5">
+  <header class="m-3">
+    <h6>Edit Your Details</h6>
+  </header>
+  <form
+    [formGroup]="editProfileForm"
+    (ngSubmit)="onSubmit()"
+    class="grid grid-cols-1 gap-3 m-5"
+  >
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter First Name</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="firstName"
+          placeholder="First Name"
+        />
+        <mat-error
+          *ngIf="
+            (editProfileForm.get('firstName')?.touched ||
+              editProfileForm.get('firstName')?.dirty) &&
+            editProfileForm.get('firstName')?.hasError('required')
+          "
+        >
+          First Name is required.
+        </mat-error></mat-form-field
+      >
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Middle Name</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="midName"
+          placeholder="Middle Name"
+      /></mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Last Name</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="lastName"
+          placeholder="Last Name"
+        />
+        <mat-error
+          *ngIf="
+            editProfileForm.get('lastName')?.touched &&
+            editProfileForm.get('lastName')?.hasError('required')
+          "
+        >
+          Last Name is required.
+        </mat-error></mat-form-field
+      >
+    </div>
+    <div>
+      <mat-radio-group aria-label="Select Gender" formControlName="gender">
+        <mat-radio-button value="male">Male</mat-radio-button>
+        <mat-radio-button value="female">Female</mat-radio-button>
+        <mat-radio-button value="others">Others</mat-radio-button>
+        <mat-error
+          *ngIf="
+            editProfileForm.get('gender')?.touched &&
+            editProfileForm.get('gender')?.hasError('required')
+          "
+        >
+          Gender is required.
+        </mat-error>
+      </mat-radio-group>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Date Of Birth</mat-label>
+        <input matInput formControlName="dob" [matDatepicker]="picker" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error
+          *ngIf="
+            editProfileForm.get('dob')?.touched &&
+            editProfileForm.get('dob')?.hasError('required')
+          "
+        >
+          Date of Birth is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Your Address</mat-label>
+        <input matInput formControlName="address" placeholder="Address*" />
+        <mat-error
+          *ngIf="
+            editProfileForm.get('address')?.touched &&
+            editProfileForm.get('address')?.hasError('required')
+          "
+        >
+          Address is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Nationality</mat-label>
+        <input
+          matInput
+          formControlName="nationality"
+          placeholder="Nationality"
+        />
+        <mat-error
+          *ngIf="
+            editProfileForm.get('nationality')?.touched &&
+            editProfileForm.get('nationality')?.hasError('required')
+          "
+        >
+          Nationality is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your email</mat-label>
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          placeholder="name@email.com"
+        />
+        <mat-error
+          *ngIf="
+            editProfileForm.get('email')?.touched &&
+            editProfileForm.get('email')?.hasError('required')
+          "
+        >
+          Email is required.
+        </mat-error>
+        <mat-error
+          *ngIf="
+            editProfileForm.get('email')?.touched &&
+            editProfileForm.get('email')?.hasError('email')
+          "
+        >
+          Please enter a valid email.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="flex justify-between gap-5">
+      <button class="flex-1" mat-flat-button color="warn" matDialogClose>
+        Cancel
+      </button>
+      <button class="flex-1" mat-flat-button color="primary">Save</button>
+    </div>
+  </form>
+</mat-dialog-content>

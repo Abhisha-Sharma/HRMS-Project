@@ -1,0 +1,41 @@
+@if(employeeOnLeaveToday$ | async; as employeeOnLeaveToday){
+<section class="flex flex-col bg-white rounded-lg min-h-96">
+  <div class="flex justify-between pt-4 px-4">
+    <p>Staffs on Leave Today ({{ employeeOnLeaveToday.length }})</p>
+  </div>
+  <mat-divider class="mat-d"></mat-divider>
+  @if(employeeOnLeaveToday.length > 0 ){
+  <div class="bg-[#eef2f5] p-3 m-3 flex-1 rounded-lg custom-scrollbar">
+    @for(data of employeeOnLeaveToday; track data.id){
+    <div
+      class="p-2 px-4 mb-2 last:mb-0 flex justify-between items-center bg-white rounded-lg"
+    >
+      <div class="flex items-center gap-5 w-full">
+        <img class="w-12 rounded-full" src="avatar.png" alt="" />
+        <div class="flex flex-col">
+          <p class="font-medium">
+            {{ data.employeeName }}
+          </p>
+          <p class="font-light text-sm">
+            {{ data.leaveFrom | date : "MMM d" }} to
+            {{ data.leaveTo | date : "MMM d" }}
+          </p>
+        </div>
+        <div class="ml-auto hidden sm:block">
+          <p class="bg-[#eef2f5] p-1 px-3 text-sm rounded-md">
+            {{ data.leaveType }}
+          </p>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  }@else{
+  <section
+    class="flex-grow flex-1 flex justify-center items-center bg-[#eef2f5] p-3 m-3 rounded-lg"
+  >
+    No Pending Requests
+  </section>
+  }
+</section>
+}
